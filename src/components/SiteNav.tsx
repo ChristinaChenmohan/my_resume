@@ -36,12 +36,12 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
             <li key={l.to}>
               <Link
                 to={l.to}
-                className="label-caps text-foreground/80 transition-colors hover:text-gold [&.active]:text-foreground"
+                className="label-caps group text-foreground/80 transition-colors hover:text-gold [&.active]:text-foreground"
                 activeOptions={{ exact: l.to === "/" }}
               >
                 <span className="relative inline-block pb-1.5">
                   {l.label}
-                  <span className="absolute inset-x-0 bottom-0 h-px scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100" />
+                  <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100 [&.active]:scale-x-100" />
                 </span>
               </Link>
             </li>
