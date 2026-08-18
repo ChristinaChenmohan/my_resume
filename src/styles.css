@@ -130,6 +130,160 @@
   }
 }
 
+/*
+ * ── Material sheet ────────────────────────────────────────────────────────
+ * Type and lines that feel stamped / engraved / embossed into the warm
+ * paper material, plus the grooves, medallions and chain links used by the
+ * coursework knowledge network.
+ */
+
+/* Engraved: a shallow cut with light catching the lower edge. */
+@utility text-engraved {
+  text-shadow:
+    0 1px 0 rgba(255, 250, 235, 0.38),
+    0 -1px 1px rgba(94, 68, 26, 0.28);
+}
+
+@utility text-engraved-gold {
+  text-shadow:
+    0 1px 0 rgba(255, 250, 235, 0.45),
+    0 -1px 1px rgba(94, 68, 26, 0.35);
+}
+
+/* Embossed: raised, light catching the top edge. */
+@utility text-embossed {
+  text-shadow:
+    0 -1px 0 rgba(255, 250, 235, 0.4),
+    0 1px 1px rgba(94, 68, 26, 0.22);
+}
+
+/* A fine channel carved into the sheet — vertical. */
+.groove-line {
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(122, 94, 44, 0),
+    rgba(122, 94, 44, 0.34) 10%,
+    rgba(122, 94, 44, 0.34) 90%,
+    rgba(122, 94, 44, 0)
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 249, 232, 0.4),
+    inset 0 -1px 0 rgba(90, 66, 26, 0.14);
+  filter: blur(0.35px);
+}
+
+/* The same channel, horizontal. */
+.groove-line-h {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(122, 94, 44, 0),
+    rgba(122, 94, 44, 0.38) 30%,
+    rgba(122, 94, 44, 0.38) 70%,
+    rgba(122, 94, 44, 0)
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 249, 232, 0.35),
+    inset 0 -1px 0 rgba(90, 66, 26, 0.12);
+  filter: blur(0.35px);
+}
+
+/* A small raised stud — metal / plaster node sitting on the sheet. */
+.node-medallion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  background: radial-gradient(
+    circle at 32% 26%,
+    rgba(255, 250, 240, 0.9),
+    rgba(238, 224, 193, 0.96) 40%,
+    rgba(216, 198, 160, 0.98) 72%,
+    rgba(201, 180, 140, 0.98)
+  );
+  border: 1px solid rgba(150, 118, 60, 0.32);
+  box-shadow:
+    0 1.5px 3px rgba(96, 72, 30, 0.16),
+    0 -1px 2px rgba(255, 250, 235, 0.5),
+    inset 0 -1.5px 3px rgba(150, 120, 60, 0.16),
+    inset 0 1.5px 2px rgba(255, 250, 235, 0.45);
+  transition:
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.9s ease,
+    background 0.9s ease;
+}
+
+.group:hover .node-medallion {
+  transform: translateY(-1px) scale(1.06);
+  background: radial-gradient(
+    circle at 34% 26%,
+    rgba(255, 252, 244, 0.95),
+    rgba(243, 230, 200, 0.98) 40%,
+    rgba(224, 205, 165, 0.98) 72%,
+    rgba(210, 188, 146, 0.98)
+  );
+  box-shadow:
+    0 2.5px 6px rgba(96, 72, 30, 0.2),
+    0 -1px 2px rgba(255, 250, 235, 0.6),
+    inset 0 -1.5px 3px rgba(150, 120, 60, 0.14),
+    inset 0 1.5px 2px rgba(255, 250, 235, 0.55);
+}
+
+/* Chain links of the coursework groove network. */
+.chain-link rect {
+  stroke: rgba(126, 98, 44, 0.42);
+  stroke-width: 1.2;
+  transition:
+    stroke 0.9s ease,
+    filter 0.9s ease;
+}
+
+.group:hover .chain-link rect {
+  stroke: rgba(168, 130, 58, 0.75);
+  filter: drop-shadow(0 1px 0 rgba(255, 249, 232, 0.45));
+}
+
+/* CSS paper fallback when WebGL is unavailable. The soft light spot follows
+   the pointer via --mat-lx / --mat-ly (set by MaterialFallback). */
+.material-fallback {
+  pointer-events: none;
+  background:
+    radial-gradient(
+      46% 42% at calc(var(--mat-lx, 0.5) * 100%) calc(var(--mat-ly, 0.45) * 100%),
+      rgba(255, 250, 236, 0.55),
+      rgba(255, 250, 236, 0) 62%
+    ),
+    radial-gradient(
+      80% 70% at calc((1 - var(--mat-lx, 0.5)) * 100%) calc((1 - var(--mat-ly, 0.45)) * 100%),
+      rgba(160, 140, 108, 0.34),
+      rgba(160, 140, 108, 0) 64%
+    ),
+    radial-gradient(120% 95% at 80% 10%, rgba(255, 246, 226, 0.85), transparent 58%),
+    radial-gradient(110% 85% at 8% 92%, rgba(196, 176, 142, 0.5), transparent 62%),
+    linear-gradient(
+      160deg,
+      rgba(236, 222, 192, 0.95),
+      rgba(222, 205, 172, 0.96) 45%,
+      rgba(206, 188, 154, 0.97)
+    );
+}
+
+.material-fallback::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.3;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
 @utility hero-veil {
   background: linear-gradient(
     to right,

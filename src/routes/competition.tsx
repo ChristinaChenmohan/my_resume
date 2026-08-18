@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
+import { usePressSpot } from "@/lib/material/use-press-spot";
 
 export const Route = createFileRoute("/competition")({
   head: () => ({
@@ -48,6 +49,8 @@ const entries = [
 ];
 
 function Competition() {
+  const press = usePressSpot(0.04, 220);
+
   return (
     <PageShell
       eyebrow="Competition Experience"
@@ -56,9 +59,11 @@ function Competition() {
     >
       <ul className="border-t border-border">
         {entries.map((e) => (
-          <li key={e.name} className="border-b border-border py-8">
+          <li key={e.name} {...press} className="group border-b border-border py-8">
             <div className="flex flex-wrap items-baseline justify-between gap-4">
-              <h3 className="font-display text-2xl md:text-3xl">{e.name}</h3>
+              <h3 className="font-display text-2xl transition-colors duration-700 group-hover:text-gold md:text-3xl">
+                {e.name}
+              </h3>
               <div className="flex items-baseline gap-6">
                 <span className="label-caps text-gold">{e.result}</span>
                 <span className="label-caps text-muted-foreground">{e.year}</span>

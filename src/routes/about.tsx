@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
+import { MaterialBackground } from "@/lib/material/MaterialBackground";
 import heroField from "@/assets/hero-field.png";
 
 export const Route = createFileRoute("/about")({
@@ -22,63 +23,92 @@ export const Route = createFileRoute("/about")({
   component: About,
 });
 
+/**
+ * About — a single flowing page that starts inside the home photograph and
+ * melts down into the warm paper material used across the site. The photo
+ * fades out via a bottom mask, the title sits directly on the image, and the
+ * story is written straight onto the material sheet (no white card).
+ */
 function About() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
-      <SiteNav overlay />
+      <MaterialBackground>
+        <SiteNav overlay />
 
-      <section className="relative flex min-h-screen items-center justify-center px-6 py-32 md:px-10">
-        <img
-          src={heroField}
-          alt="A woman in a flowing golden dress running through a field of rapeseed flowers"
-          width={1672}
-          height={941}
-          className="absolute inset-0 size-full object-cover"
-        />
-        <div className="absolute inset-0 bg-paper/25" />
-
-        <article className="about-card relative mx-auto w-full max-w-[640px] rounded-lg px-8 py-14 text-center md:px-16 md:py-20">
-          <div className="fade-up flex items-center justify-center gap-3">
-            <Sparkles className="size-3.5 text-gold" />
-            <span className="label-caps text-gold">Welcome to my world!</span>
-          </div>
-
-          <h1 className="fade-up mt-5 font-display text-7xl font-light text-gold md:text-8xl lg:text-9xl">
-            About
-          </h1>
-
-          <div className="rule-diamond-center fade-up mx-auto mt-8" style={{ animationDelay: "120ms" }} />
-
+        {/* ── Photo hero: home-style image fading into the material ── */}
+        <section className="relative">
           <div
-            className="fade-up mt-10 space-y-6 text-base leading-relaxed text-foreground/85 md:text-lg"
-            style={{ animationDelay: "220ms" }}
+            className="absolute inset-x-0 top-0 h-[88vh] min-h-[560px] [mask-image:linear-gradient(to_bottom,black_0%,black_55%,transparent_97%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,black_55%,transparent_97%)]"
+            aria-hidden="true"
           >
-            <p>
-              Welcome to my world! My name is Chen Mohan—you can call me Christian. I am a
-              university student majoring in Artificial Intelligence, equipped with skills in
-              professional coding, project architecture and development, and UI design, alongside a
-              broad range of other capabilities.
-            </p>
-            <p>
-              This space documents the milestones of my personal and professional growth.
-              <br />
-              I am still on the journey…
-            </p>
+            <img
+              src={heroField}
+              alt=""
+              width={1672}
+              height={941}
+              className="absolute inset-0 size-full object-cover"
+            />
+            <div className="hero-veil absolute inset-0" />
           </div>
 
-          <div className="fade-up mt-12" style={{ animationDelay: "320ms" }}>
-            <Link
-              to="/"
-              className="label-caps group inline-flex items-center gap-4 rounded-full border border-gold px-8 py-3.5 text-gold transition-colors hover:bg-gold hover:text-primary-foreground"
-            >
-              Back home
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+          {/* Title written directly on the photograph. */}
+          <div className="relative mx-auto flex min-h-[88vh] max-w-[1600px] items-center px-6 pt-24 md:px-10">
+            <div className="ml-auto w-full max-w-2xl">
+              <div className="fade-up flex items-center justify-end gap-3">
+                <Sparkles className="size-3.5 text-gold-soft" />
+                <span className="label-caps text-gold-soft">Welcome to my world!</span>
+              </div>
+              <h1 className="fade-up mt-5 text-right font-display text-[clamp(4rem,12vw,9rem)] font-light leading-[0.92] tracking-tight text-on-image">
+                About
+              </h1>
+              <div
+                className="rule-diamond fade-up ml-auto mt-6 md:mt-8"
+                style={{ animationDelay: "120ms" }}
+              />
+              <p
+                className="fade-up mt-8 max-w-md text-right text-base leading-relaxed text-on-image/90 md:text-lg"
+                style={{ animationDelay: "220ms" }}
+              >
+                The story and focus behind the practice — written directly on the page, no
+                boxes, no frames.
+              </p>
+            </div>
           </div>
+        </section>
 
-          <DecorativeBranch className="pointer-events-none absolute -right-2 bottom-0 w-28 text-gold/25 md:-right-6 md:w-40" />
-        </article>
-      </section>
+        {/* ── Story written straight onto the paper material ── */}
+        <section className="relative px-6 pb-28 pt-16 md:px-10 md:pt-24">
+          <div className="mx-auto max-w-3xl">
+            <div className="space-y-7 text-lg leading-relaxed text-ink/90 md:text-xl">
+              <p className="fade-up text-engraved">
+                My name is Chen Mohan — you can call me Christian. I am a university student
+                majoring in Artificial Intelligence, equipped with skills in professional coding,
+                project architecture and development, and UI design, alongside a broad range of
+                other capabilities.
+              </p>
+              <p className="fade-up text-engraved" style={{ animationDelay: "120ms" }}>
+                This space documents the milestones of my personal and professional growth.
+                <br />
+                I am still on the journey…
+              </p>
+            </div>
+
+            <div className="groove-line-h fade-up mt-14 max-w-xs" style={{ animationDelay: "200ms" }} />
+
+            <div className="fade-up mt-12" style={{ animationDelay: "280ms" }}>
+              <Link
+                to="/"
+                className="label-caps group inline-flex items-center gap-4 rounded-full border border-gold px-8 py-3.5 text-gold transition-colors hover:bg-gold hover:text-primary-foreground"
+              >
+                Back home
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+
+            <DecorativeBranch className="pointer-events-none mx-auto mt-16 w-24 text-gold/30 md:w-32" />
+          </div>
+        </section>
+      </MaterialBackground>
     </div>
   );
 }

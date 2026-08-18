@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
+import { usePressSpot } from "@/lib/material/use-press-spot";
 
 export const Route = createFileRoute("/project")({
   head: () => ({
@@ -48,6 +49,8 @@ const projects = [
 ];
 
 function Projects() {
+  const press = usePressSpot(0.045, 210);
+
   return (
     <PageShell
       eyebrow="Project"
@@ -56,7 +59,11 @@ function Projects() {
     >
       <div className="grid gap-px bg-border sm:grid-cols-2">
         {projects.map((p) => (
-          <article key={p.title} className="group bg-background p-8 transition-colors md:p-10">
+          <article
+            key={p.title}
+            {...press}
+            className="group bg-background/70 p-8 transition-colors backdrop-blur-[2px] md:p-10"
+          >
             <div className="flex items-baseline justify-between">
               <p className="label-caps text-gold">{p.kind}</p>
               <p className="label-caps text-muted-foreground">{p.year}</p>

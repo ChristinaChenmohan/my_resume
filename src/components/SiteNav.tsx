@@ -19,7 +19,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
       className={
         overlay
           ? "absolute inset-x-0 top-0 z-30"
-          : "sticky top-0 z-30 border-b border-border/60 bg-background/90 backdrop-blur"
+          : "sticky top-0 z-30 border-b border-border/50 bg-background/40 backdrop-blur-md"
       }
     >
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-6 md:px-10">

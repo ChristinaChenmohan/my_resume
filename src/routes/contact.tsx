@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
+import { usePressSpot } from "@/lib/material/use-press-spot";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -28,6 +29,8 @@ const channels = [
 ];
 
 function Contact() {
+  const press = usePressSpot(0.04, 220);
+
   return (
     <PageShell
       eyebrow="Contact"
@@ -36,9 +39,13 @@ function Contact() {
     >
       <dl className="max-w-2xl border-t border-border">
         {channels.map((c) => (
-          <div key={c.k} className="flex items-baseline justify-between gap-6 border-b border-border py-6">
+          <div
+            key={c.k}
+            {...press}
+            className="group flex items-baseline justify-between gap-6 border-b border-border py-6"
+          >
             <dt className="label-caps text-muted-foreground">{c.k}</dt>
-            <dd className="font-display text-xl md:text-2xl">
+            <dd className="font-display text-xl transition-colors duration-700 group-hover:text-gold md:text-2xl">
               {c.href ? (
                 <a href={c.href} className="transition-colors hover:text-gold">
                   {c.v}
