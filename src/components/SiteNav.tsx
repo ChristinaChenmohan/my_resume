@@ -41,7 +41,7 @@ export function SiteNav({ overlay = false }: { overlay?: boolean }) {
               >
                 <span className="relative inline-block pb-1.5">
                   {l.label}
-                  <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100 [&.active]:scale-x-100" />
+                  <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-gold transition-transform duration-300 group-hover:scale-x-100 group-[.active]:scale-x-100" />
                 </span>
               </Link>
             </li>
