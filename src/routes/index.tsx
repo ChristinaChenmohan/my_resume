@@ -30,7 +30,7 @@ function Index() {
 
       <section className="relative h-screen min-h-[680px] w-full">
         <img
-          src={heroField}
+          src={heroField.url}
           alt="A woman in a flowing golden dress running through a field of rapeseed flowers"
           width={1920}
           height={1088}
