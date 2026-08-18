@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CompetitionRouteImport } from './routes/competition'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CourseworkRouteImport } from './routes/coursework'
+import { Route as ProjectRouteImport } from './routes/project'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompetitionRoute = CompetitionRouteImport.update({
+  id: '/competition',
+  path: '/competition',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CourseworkRoute = CourseworkRouteImport.update({
+  id: '/coursework',
+  path: '/coursework',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectRoute = ProjectRouteImport.update({
+  id: '/project',
+  path: '/project',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/competition': typeof CompetitionRoute
+  '/contact': typeof ContactRoute
+  '/coursework': typeof CourseworkRoute
+  '/project': typeof ProjectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/competition': typeof CompetitionRoute
+  '/contact': typeof ContactRoute
+  '/coursework': typeof CourseworkRoute
+  '/project': typeof ProjectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/competition': typeof CompetitionRoute
+  '/contact': typeof ContactRoute
+  '/coursework': typeof CourseworkRoute
+  '/project': typeof ProjectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/about' | '/competition' | '/contact' | '/coursework' | '/project'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/competition' | '/contact' | '/coursework' | '/project'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/competition'
+    | '/contact'
+    | '/coursework'
+    | '/project'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CompetitionRoute: typeof CompetitionRoute
+  ContactRoute: typeof ContactRoute
+  CourseworkRoute: typeof CourseworkRoute
+  ProjectRoute: typeof ProjectRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/competition': {
+      id: '/competition'
+      path: '/competition'
+      fullPath: '/competition'
+      preLoaderRoute: typeof CompetitionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coursework': {
+      id: '/coursework'
+      path: '/coursework'
+      fullPath: '/coursework'
+      preLoaderRoute: typeof CourseworkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/project': {
+      id: '/project'
+      path: '/project'
+      fullPath: '/project'
+      preLoaderRoute: typeof ProjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CompetitionRoute: CompetitionRoute,
+  ContactRoute: ContactRoute,
+  CourseworkRoute: CourseworkRoute,
+  ProjectRoute: ProjectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
