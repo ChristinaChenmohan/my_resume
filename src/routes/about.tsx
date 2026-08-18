@@ -41,7 +41,6 @@ function About() {
           <div className="fade-up flex items-center justify-center gap-3">
             <Sparkles className="size-3.5 text-gold" />
             <span className="label-caps text-gold">Welcome to my world!</span>
-            <Sparkles className="size-3.5 text-gold" />
           </div>
 
           <h1 className="fade-up mt-5 font-display text-7xl font-light text-gold md:text-8xl lg:text-9xl">
