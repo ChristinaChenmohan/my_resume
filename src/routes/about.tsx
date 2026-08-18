@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
-import heroField from "@/assets/hero-field.png.asset.json";
+import heroField from "@/assets/hero-field.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -29,7 +29,7 @@ function About() {
 
       <section className="relative flex min-h-screen items-center justify-center px-6 py-32 md:px-10">
         <img
-          src={heroField.url}
+          src={heroField}
           alt="A woman in a flowing golden dress running through a field of rapeseed flowers"
           width={1920}
           height={1088}

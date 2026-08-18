@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/SiteNav";
-import heroField from "@/assets/hero-field.png.asset.json";
+import heroField from "@/assets/hero-field.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,7 +30,7 @@ function Index() {
 
       <section className="relative h-screen min-h-[680px] w-full">
         <img
-          src={heroField.url}
+          src={heroField}
           alt="A woman in a flowing golden dress running through a field of rapeseed flowers"
           width={1920}
           height={1088}
